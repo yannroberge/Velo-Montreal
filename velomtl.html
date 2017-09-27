@@ -4,6 +4,7 @@
 <head>
     <title>Vélo Montréal</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="velomtl.css">
     <link rel="SHORTCUT ICON" href="Icone-velo.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -24,16 +25,12 @@
 English</a>
 </div>
 
-<!-- Onglets Carte et Liste -->
-<div id="tabs">
-	<div id="map">
-		
-	</div>
+<!-- Boutons d'onglets Carte et Liste -->
+<div class="tab-content" id="tabs"></div>
 
-	<div id="liste">
-		
-	</div>
-</div>
+<!-- Contenu des onglets Carte et Liste -->
+<div role="tabpanel" class="tab-pane" id="map">Carte</div>
+<div role="tabpanel" class="tab-pane" id="liste">Liste</div>
 
 <div id="map"></div>
 
