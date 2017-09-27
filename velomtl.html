@@ -2,21 +2,38 @@
 <html>
 
 <head>
-    <title>Velo Montreal</title>
+    <title>Vélo Montréal</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="velomtl.css">
     <link rel="SHORTCUT ICON" href="Icone-velo.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGT02qFjUTjSFv0XuybDJ13dMYqq3smk&callback=initMap">
     </script>
+    <script src="https://use.fontawesome.com/da0fa343ae.js"></script>
     <script src="velomtl.js"></script>
 </head>
 
 <body>
 
-<div id="entete"></div>
+<!-- Barre en haut de page, bouton de changement de langue -->
+<div id="entete">
+	<a id="boutonVeloMTL" href="velomtl.html">Vélo Montréal</a>
+	<a id="boutonAccueil" href="velomtl.html">Accueil</a>
+	<a id="boutonLangue" href="velomtl.html"><i class="fa fa-globe" aria-hidden="true"></i>
+English</a>
+</div>
 
-<div id="tabs"></div>
+<!-- Onglets Carte et Liste -->
+<div id="tabs">
+	<div id="map">
+		
+	</div>
+
+	<div id="liste">
+		
+	</div>
+</div>
 
 <div id="map"></div>
 
