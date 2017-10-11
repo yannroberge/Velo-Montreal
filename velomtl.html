@@ -2,36 +2,66 @@
 <html>
 
 <head>
+
     <title>Vélo Montréal</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- JQuery UI -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- API Google Maps -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGT02qFjUTjSFv0XuybDJ13dMYqq3smk&callback=initMap">
+    </script>
+    
+    <!-- Fontawesome (Icône du globe) -->
+    <script src="https://use.fontawesome.com/da0fa343ae.js"></script>
+    
+    <!-- Nos fichiers -->
     <link rel="stylesheet" type="text/css" href="velomtl.css">
     <link rel="SHORTCUT ICON" href="Icone-velo.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGT02qFjUTjSFv0XuybDJ13dMYqq3smk&callback=initMap">
-    </script>
-    <script src="https://use.fontawesome.com/da0fa343ae.js"></script>
     <script src="velomtl.js"></script>
+    
 </head>
 
 <body>
 
-<!-- Barre en haut de page, bouton de changement de langue -->
-<div id="entete">
-	<a id="boutonVeloMTL" href="velomtl.html">Vélo Montréal</a>
-	<a id="boutonAccueil" href="velomtl.html">Accueil</a>
-	<a id="boutonLangue" href="velomtl.html"><i class="fa fa-globe" aria-hidden="true"></i>
-English</a>
-</div>
+    <!-- Barre en haut de page, bouton de changement de langue -->
+    <div id="entete">
+	    <a id="boutonVeloMTL" href="velomtl.html">Vélo Montréal</a>
+	    <a id="boutonAccueil" href="velomtl.html">Accueil</a>
+	    <a id="boutonLangue" href="velomtl.html"><i class="fa fa-globe" aria-hidden="true"></i>
+    English</a>
+    </div>
 
-<!-- Boutons d'onglets Carte et Liste -->
-<div class="tab-content" id="tabs"></div>
-
-<!-- Contenu des onglets Carte et Liste -->
-<div role="tabpanel" class="tab-pane" id="map">Carte</div>
-<div role="tabpanel" class="tab-pane" id="liste">Liste</div>
-
-<div id="map"></div>
+    <!-- Boutons d'onglets Carte et Liste -->
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab"  href="#div-carte">Carte des stations</a></li>
+        <li><a data-toggle="tab" href="#div-liste">Liste des stations</a></li>
+    </ul>
+    
+    <!-- Contenu des onglets Carte et Liste -->
+    <div id="contenu" class="tab-content">
+        <div id="div-carte" class="tab-pane fade in active">
+            
+            <div class="ui-widget">
+              <input id="recherche">
+            </div>
+                    
+            <!-- Carte Google Maps -->
+            <div id="div-map"></div>
+        </div>
+        
+        <div id="div-liste" class="tab-pane fade">Liste</div>
+    </div>
+    
 
 </body>
