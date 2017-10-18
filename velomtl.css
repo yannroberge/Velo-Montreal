@@ -46,9 +46,33 @@ body {
 	background-color: #27759E;
 }
 
+.nav-tabs {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
 
-#div-map {
-    height: 400px;
+.nav-tabs li a {
+	background-color: #eeeeee;
+}
+
+.nav-tabs li a:hover {
+	background-color: #dddddd;
+}
+
+.nav-tabs li.active a,
+.nav-tabs li.active a:hover,
+.nav-tabs li.active a:focus {
+	background-color: seagreen;
+	color: white;
+}
+
+
+/* -----  Onglet carte  ----- */
+
+#recherche-localisation {
+    position: absolute;
+    margin-left: 20px;
 }
 
 .ui-autocomplete {
@@ -57,3 +81,45 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+#recherche {
+    width: 350px;
+}
+
+#info-stations {
+    width: 900px;
+    margin-left: auto;
+    margin-right: 100px;
+}
+
+.table-striped {
+    table-layout: fixed;
+}
+
+#info-stations div {
+	background-color: #3193C6;
+	height: 15px;
+}
+
+.champ {
+    position: absolute;
+}
+
+.info {
+    position: relative;
+    left: 300px;
+}
+
+#div-map {
+    height: 400px;
+}
+
+h3 {
+    color: #3193C6;
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 24px;
+}
+

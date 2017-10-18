@@ -52,8 +52,67 @@
     <div id="contenu" class="tab-content">
         <div id="div-carte" class="tab-pane fade in active">
             
-            <div class="ui-widget">
-              <input id="recherche">
+            <div id="recherche-localisation">
+                <!-- Barre de recherche de station -->
+                <div class="ui-widget">
+                  <input id="recherche">
+                </div>
+                
+                <h3>Localisation:</h3>
+                <h4 id="localisation"></h3>
+            </div>
+            
+            <!-- Tableau contenant les informations pertinentes de la station -->
+            <div id="info-stations">
+                <h3>État de la station</h3>
+                <div></div>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <td>
+                            <span class="champ">ID station</span>
+                            <span class="info badge">-</span>
+                        </td>
+                        
+                        <td>
+                            <span class="champ">Vélos disponibles</span>
+                            <span class="info badge">-</span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <span class="champ">Bloquée</span>
+                            <span class="info badge">-</span>
+                        </td>
+                        
+                        <td>
+                            <span class="champ">Bornes disponibles</span>
+                            <span class="info badge">-</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="champ">Suspendue</span>
+                            <span class="info badge">-</span>
+                        </td>
+                        
+                        <td>
+                            <span class="champ">Vélos indisponibles</span>
+                            <span class="info badge">-</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="champ">Hors service</span>
+                            <span class="info badge">-</span>
+                        </td>
+                        
+                        <td>
+                            <span class="champ">Bornes indisponibles</span>
+                            <span class="info badge">-</span>
+                        </td>
+                    </tr>
+                </table>
             </div>
                     
             <!-- Carte Google Maps -->
@@ -63,5 +122,4 @@
         <div id="div-liste" class="tab-pane fade">Liste</div>
     </div>
     
-
 </body>

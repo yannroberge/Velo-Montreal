@@ -7,7 +7,7 @@ function initMap() {
     });
 }
 
-$( function() {
+$(document).ready( function() {
     
     $.ajax('https://secure.bixi.com/data/stations.json',
         {
