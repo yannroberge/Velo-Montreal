@@ -58,3 +58,10 @@ function initAutocomplete(nomsStations){
       }
     });
 }
+
+$(document).ready( function () {
+    $('#tableauListe').DataTable();
+} );
+// $(document).ready( function() {
+// 	$( "#tableauListe" ).DataTable();
+// });
