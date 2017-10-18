@@ -25,6 +25,10 @@
     <!-- Fontawesome (Icône du globe) -->
     <script src="https://use.fontawesome.com/da0fa343ae.js"></script>
     
+    <!-- Datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
     <!-- Nos fichiers -->
     <link rel="stylesheet" type="text/css" href="velomtl.css">
     <link rel="SHORTCUT ICON" href="Icone-velo.ico">
@@ -114,12 +118,37 @@
                     </tr>
                 </table>
             </div>
-                    
+              
             <!-- Carte Google Maps -->
             <div id="div-map"></div>
         </div>
         
-        <div id="div-liste" class="tab-pane fade">Liste</div>
+        <div id="div-liste" class="tab-pane fade">
+        	<h4>État de toutes les stations de vélos</h4>
+        	<table id="tableauListe" class="table table-striped table-bordered" width="100%">
+        		<thead>
+        			<tr>
+        				<td>Test</td>
+        				<td>Test</td>
+        			</tr>
+        		</thead>
+				<tbody>
+					<tr>
+						<td>A</td>
+						<td>B</td>
+					</tr>
+                    <tr>
+                        <td>C</td>
+                        <td>D</td>
+
+                    </tr>
+                    <tr>
+                        <td>E</td>
+                        <td>F</td>
+                    </tr>
+				</tbody>
+        	</table>
+        </div>
     </div>
     
 </body>

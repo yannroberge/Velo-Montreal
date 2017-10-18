@@ -12,8 +12,8 @@ $(document).ready( function() {
     $.ajax('https://secure.bixi.com/data/stations.json',
         {
             success: function(data){
-                var bixi = data;
-                var nomsStations = $.map(bixi.stations, function(station){ return station.s; });
+
+                var nomsStations = $.map(data.stations, function(station){ return station.s; });
                 initAutocomplete(nomsStations);
             },
             error: function(){
@@ -21,9 +21,22 @@ $(document).ready( function() {
             }
         }
     );
-    
-    
+       
 });
+
+function parseStations(stationBrute){
+    var station = {
+        "ID":stationBrute.n,
+        "bloquee":stationBrute.b,
+        "suspendue":stationBrute.su,
+        "horsService":stationBrute.m,
+        "velosDispo":stationBrute.ba,
+        "bornesDispo":stationBrute.da,
+        "velosInDispos":stationBrute.bx,
+        "bornesInDispos":stationBrute.dx
+    };
+    return station;
+}
 
 function initAutocomplete(nomsStations){
     //Code tiré du tutoriel sur le widget Autocomplete de jQuery UI
@@ -58,3 +71,11 @@ function initAutocomplete(nomsStations){
       }
     });
 }
+
+$(document).ready( function () {
+    $('#tableauListe').DataTable( {
+        language: {
+            url: "DataTables/table_fr_FR.json"
+        }
+    });
+} );
