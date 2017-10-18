@@ -58,6 +58,6 @@ body {
     overflow-x: hidden;
 }
 
-#tableauListe {
-	
+#tableauListe #tableauListe_length label {
+	font-weight: lighter;
 }
