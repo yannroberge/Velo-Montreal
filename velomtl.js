@@ -12,8 +12,12 @@ $(document).ready( function() {
     $.ajax('https://secure.bixi.com/data/stations.json',
         {
             success: function(data){
+                var stations = parseStations(data.stations);
 
-                var nomsStations = $.map(data.stations, function(station){ return station.s; });
+                // var nomsStations = $.map(data.stations, function(station){ return station.s; });
+                // initAutocomplete(nomsStations);
+
+                var nomsStations = $.map(stations, function(station){ return station.Nom; });
                 initAutocomplete(nomsStations);
             },
             error: function(){
@@ -24,18 +28,27 @@ $(document).ready( function() {
        
 });
 
-function parseStations(stationBrute){
-    var station = {
-        "ID":stationBrute.n,
-        "bloquee":stationBrute.b,
-        "suspendue":stationBrute.su,
-        "horsService":stationBrute.m,
-        "velosDispo":stationBrute.ba,
-        "bornesDispo":stationBrute.da,
-        "velosInDispos":stationBrute.bx,
-        "bornesInDispos":stationBrute.dx
-    };
-    return station;
+function parseStations(stationsBrutes){
+
+    var stations = [];
+    var x = [];
+    var i=0;
+    // alert(stationsBrutes[i].n);
+    for(x in stationsBrutes) {
+        stations[i] = {
+            "ID":stationsBrutes[x].n,
+            "Nom":stationsBrutes[x].s,
+            "bloquee":stationsBrutes[x].b,
+            "suspendue":stationsBrutes[x].su,
+            "horsService":stationsBrutes[x].m,
+            "velosDispo":stationsBrutes[x].ba,
+            "bornesDispo":stationsBrutes[x].da,
+            "velosInDispos":stationsBrutes[x].bx,
+            "bornesInDispos":stationsBrutes[x].dx
+        };
+        i++;
+    }
+    return stations;
 }
 
 function initAutocomplete(nomsStations){
