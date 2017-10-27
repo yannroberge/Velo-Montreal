@@ -19,6 +19,8 @@ $(document).ready( function() {
 
                 var nomsStations = $.map(stations, function(station){ return station.Nom; });
                 initAutocomplete(nomsStations);
+
+                
             },
             error: function(){
                 alert("Erreur lors du chargement des stations");
