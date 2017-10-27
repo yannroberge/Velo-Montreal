@@ -19,6 +19,10 @@ $(document).ready( function() {
 
                 var nomsStations = $.map(stations, function(station){ return station.Nom; });
                 initAutocomplete(nomsStations);
+                
+                var stationsCherchable = {};
+                $.map(stations, function(station){ stationsCherchable[station.Nom] = station; });
+                updateTableau(stationsCherchable);
             },
             error: function(){
                 alert("Erreur lors du chargement des stations");
@@ -34,6 +38,7 @@ function parseStations(stationsBrutes){
     var x = [];
     var i=0;
     // alert(stationsBrutes[i].n);
+    
     for(x in stationsBrutes) {
         stations[i] = {
             "ID":stationsBrutes[x].n,
@@ -43,9 +48,10 @@ function parseStations(stationsBrutes){
             "horsService":stationsBrutes[x].m,
             "velosDispo":stationsBrutes[x].ba,
             "bornesDispo":stationsBrutes[x].da,
-            "velosInDispos":stationsBrutes[x].bx,
-            "bornesInDispos":stationsBrutes[x].dx
+            "velosInDispo":stationsBrutes[x].bx,
+            "bornesInDispo":stationsBrutes[x].dx
         };
+        
         i++;
     }
     return stations;
@@ -92,3 +98,27 @@ $(document).ready( function () {
         }
     });
 } );
+
+
+function updateTableau(stations){
+    var barreRecherche = document.getElementById( "recherche" );
+    
+    barreRecherche.onchange = function () {
+        var s = stations[barreRecherche.value];
+        if(s != null){
+            document.getElementById( "tableID" ).innerHTML = s.ID;
+            document.getElementById( "tableBloquee" ).innerHTML = boolVersFrancais(s.bloquee);
+            document.getElementById( "tableSuspendue" ).innerHTML = boolVersFrancais(s.suspendue);
+            document.getElementById( "tableHorsService" ).innerHTML = boolVersFrancais(s.horsService);
+            document.getElementById( "tableVelosDispo" ).innerHTML = s.velosDispo;
+            document.getElementById( "tableBornesDispo" ).innerHTML = s.bornesDispo;
+            document.getElementById( "tableVelosInDispo" ).innerHTML = s.velosInDispo;
+            document.getElementById( "tableBornesInDispo" ).innerHTML = s.bornesInDispo;
+        }
+    };
+}
+
+function boolVersFrancais(x){
+    return x ? "Oui":"Non";
+}
+
