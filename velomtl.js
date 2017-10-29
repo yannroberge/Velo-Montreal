@@ -120,7 +120,7 @@ function updateTableau(stations){
 function genererListe(stations) {
     var x=[];
     var tableauListe = $("#tableauListe").DataTable();
-    stations[4].bloquee = true;
+    //stations[4].bloquee = true;
     for(x in stations) {
         tableauListe.row.add( [
         stations[x].ID,
@@ -129,8 +129,9 @@ function genererListe(stations) {
         stations[x].bornesDispo,
         afficherBooleen(stations[x].bloquee),
         afficherBooleen(stations[x].suspendue)
-    ] ).draw();
+    ] )
     }
+    tableauListe.draw();
 }
 
 function afficherBooleen(booleen) {
