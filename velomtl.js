@@ -23,6 +23,13 @@ $(document).ready( function() {
                 var stationsCherchable = {};
                 $.map(stations, function(station){ stationsCherchable[station.Nom] = station; });
                 updateTableau(stationsCherchable);
+
+                $('#tableauListe').DataTable( {
+                    language: {
+                        url: "DataTables/table_fr_FR.json"
+                    }
+                });
+                genererListe(stations);
             },
             error: function(){
                 alert("Erreur lors du chargement des stations");
@@ -91,14 +98,6 @@ function initAutocomplete(nomsStations){
     });
 }
 
-$(document).ready( function () {
-    $('#tableauListe').DataTable( {
-        language: {
-            url: "DataTables/table_fr_FR.json"
-        }
-    });
-} );
-
 
 function updateTableau(stations){
     var barreRecherche = document.getElementById( "recherche" );
@@ -116,6 +115,29 @@ function updateTableau(stations){
             document.getElementById( "tableBornesInDispo" ).innerHTML = s.bornesInDispo;
         }
     };
+}
+
+function genererListe(stations) {
+    var x=[];
+    var tableauListe = $("#tableauListe").DataTable();
+    stations[4].bloquee = true;
+    for(x in stations) {
+        tableauListe.row.add( [
+        stations[x].ID,
+        stations[x].Nom,
+        stations[x].velosDispo,
+        stations[x].bornesDispo,
+        afficherBooleen(stations[x].bloquee),
+        afficherBooleen(stations[x].suspendue)
+    ] ).draw();
+    }
+}
+
+function afficherBooleen(booleen) {
+    var ouiOuNon = "";
+    if(booleen) ouiOuNon = "<span class='badge badge-danger'>Oui</span>"
+    else ouiOuNon = "<span class='badge badge-success'>Non</span>";
+    return ouiOuNon;
 }
 
 function boolVersFrancais(x){

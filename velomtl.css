@@ -119,6 +119,10 @@ h3 {
     font-size: 24px;
 }
 
-h4 {
-    font-size: 24px;
+.badge-success {
+	background-color: #29B873;
+}
+
+.badge-danger {
+	background-color: #EE634C;
 }
