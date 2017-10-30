@@ -137,8 +137,8 @@ function genererListe(stations) {
         stations[x].Nom,
         afficherNombreCouleur(stations[x].velosDispo),
         afficherNombreCouleur(stations[x].bornesDispo),
-        afficherBooleen(stations[x].bloquee),
-        afficherBooleen(stations[x].suspendue)
+        afficherBooleenCouleur(stations[x].bloquee),
+        afficherBooleenCouleur(stations[x].suspendue)
     ] )
     }
     tableauListe.draw();
