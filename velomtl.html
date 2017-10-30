@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Vélo Montréal</title>
+    <title class="traduire">Vélo Montréal</title>
     <meta charset="UTF-8">
     
     <!-- Ajax -->
@@ -40,21 +40,22 @@
 
     <!-- Barre en haut de page, bouton de changement de langue -->
     <div id="entete">
-	    <a id="boutonVeloMTL" href="velomtl.html">Vélo Montréal</a>
-	    <a id="boutonAccueil" href="velomtl.html">Accueil</a>
-	    <a id="boutonLangue" href="velomtl.html"><i class="fa fa-globe" aria-hidden="true"></i> English</a>
+	    <a id="boutonVeloMTL" class="traduire" href="velomtl.html">Vélo Montréal</a>
+	    <a id="boutonAccueil" class="traduire" href="velomtl.html">Accueil</a>
+	    <a id="boutonLangue"><i class="fa fa-globe" aria-hidden="true"></i> English</a>
     </div>
 
     <!-- Tests temporaires -->
-    <p>FR1</p>
+    <!-- <p>FR1</p>
     <p class="traduire">FR2</p>
     <p>FR3</p>
     <p class="traduire">FR4</p>
-    <p>FR5</p>
+    <p>FR5</p> -->
+
     <!-- Boutons d'onglets Carte et Liste -->
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab"  href="#div-carte">Carte des stations</a></li>
-        <li><a data-toggle="tab" href="#div-liste">Liste des stations</a></li>
+        <li class="active"><a data-toggle="tab" class="traduire" href="#div-carte">Carte des stations</a></li>
+        <li><a data-toggle="tab" class="traduire" href="#div-liste">Liste des stations</a></li>
     </ul>
     
     <!-- Contenu des onglets Carte et Liste -->
@@ -67,57 +68,57 @@
                   <input id="recherche">
                 </div>
                 
-                <h3>Localisation:</h3>
+                <h3 class="traduire">Localisation:</h3>
                 <h4 id="localisation"></h4>
             </div>
             
             <!-- Tableau contenant les informations pertinentes de la station -->
             <div id="info-stations">
-                <h3>État de la station</h3>
+                <h3 class="traduire">État de la station</h3>
                 <div></div>
                 <table class="table table-striped table-bordered">
                     <tr>
                         <td>
-                            <span class="champ">ID station</span>
+                            <span class="champ traduire">ID station</span>
                             <span class="info badge" id="tableID">-</span>
                         </td>
                         
                         <td>
-                            <span class="champ">Vélos disponibles</span>
+                            <span class="champ traduire">Vélos disponibles</span>
                             <span class="info" id="tableVelosDispo"><span class="badge">-</span></span>
                         </td>
                     </tr>
                     
                     <tr>
                         <td>
-                            <span class="champ">Bloquée</span>
+                            <span class="champ traduire">Bloquée</span>
                             <span class="info" id="tableBloquee"><span class="badge">-</span></span>
                         </td>
                         
                         <td>
-                            <span class="champ">Bornes disponibles</span>
+                            <span class="champ traduire">Bornes disponibles</span>
                             <span class="info" id="tableBornesDispo"><span class="badge">-</span></span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="champ">Suspendue</span>
+                            <span class="champ traduire">Suspendue</span>
                             <span class="info" id="tableSuspendue"><span class="badge">-</span></span>
                         </td>
                         
                         <td>
-                            <span class="champ">Vélos indisponibles</span>
+                            <span class="champ traduire">Vélos indisponibles</span>
                             <span class="info badge" id="tableVelosInDispo">-</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <span class="champ">Hors service</span>
+                            <span class="champ traduire">Hors service</span>
                             <span class="info" id="tableHorsService"><span class="badge">-</span></span>
                         </td>
                         
                         <td>
-                            <span class="champ">Bornes indisponibles</span>
+                            <span class="champ traduire">Bornes indisponibles</span>
                             <span class="info badge" id="tableBornesInDispo">-</span>
                         </td>
                     </tr>
@@ -129,16 +130,16 @@
         </div>
         
         <div id="div-liste" class="tab-pane fade">
-        	<h3>État de toutes les stations de vélos</h3>
+        	<h3 class="traduire">État de toutes les stations de vélos</h3>
         	<table id="tableauListe" class="table table-striped table-bordered" width="100%">
         		<thead>
         			<tr>
-        				<td>ID</td>
-        				<td>Nom station</td>
-                        <td>Vélos disponibles</td>
-                        <td>Bornes disponibles</td>
-                        <td>Bloquée</td>
-                        <td>Suspendue</td>
+        				<td class="traduire">ID</td>
+        				<td class="traduire">Nom station</td>
+                        <td class="traduire">Vélos disponibles</td>
+                        <td class="traduire">Bornes disponibles</td>
+                        <td class="traduire">Bloquée</td>
+                        <td class="traduire">Suspendue</td>
         			</tr>
         		</thead>
 				<tbody>

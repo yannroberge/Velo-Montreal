@@ -39,6 +39,20 @@ $(document).ready( function() {
                     //         alert($(this).html().concat(" n'a pas encore de traduction"));
                     // }
                 //});
+                $("#boutonLangue").click(function() {
+                    if ($("html").attr("lang") == "fr") {
+                        $(this).html("<i class=\"fa fa-globe\" aria-hidden=\"true\"></i> Français");
+                        $("html").attr("lang","en");
+                        $(".traduire").each(function() {
+                            $(this).html(traduireEn($(this).html() ) );
+                            //alert($(this).html());
+                        });
+                    }
+                    else {
+                        // Rafraîchir la page, ce qui remet le site en Français
+                        location.reload();
+                    }
+                });
             },
             error: function(){
                 alert("Erreur lors du chargement des stations");
@@ -116,9 +130,9 @@ function updateTableau(stations){
             document.getElementById( "localisation" ).innerHTML = s.Nom;
         
             document.getElementById( "tableID" ).innerHTML = s.ID;
-            document.getElementById( "tableBloquee" ).innerHTML = afficherBooleen(s.bloquee);
-            document.getElementById( "tableSuspendue" ).innerHTML = afficherBooleen(s.suspendue);
-            document.getElementById( "tableHorsService" ).innerHTML = afficherBooleen(s.horsService);
+            document.getElementById( "tableBloquee" ).innerHTML = afficherBooleenCouleur(s.bloquee);
+            document.getElementById( "tableSuspendue" ).innerHTML = afficherBooleenCouleur(s.suspendue);
+            document.getElementById( "tableHorsService" ).innerHTML = afficherBooleenCouleur(s.horsService);
             document.getElementById( "tableVelosDispo" ).innerHTML = afficherNombreCouleur(s.velosDispo);
             document.getElementById( "tableBornesDispo" ).innerHTML = afficherNombreCouleur(s.bornesDispo);
             document.getElementById( "tableVelosInDispo" ).innerHTML = s.velosInDispo;
@@ -144,16 +158,12 @@ function genererListe(stations) {
     tableauListe.draw();
 }
 
-function traduire(objet) {
-
-}
-
 function afficherBooleenCouleur(booleen) {
     //Retourne une balise HTML qui s'affiche comme un badge coloré avec le booléen donnée sous forme oui/non à l'intérieur
     //Sera rouge si true et vert si false
     var element = "";
-    if(booleen) element = "<span class='badge badge-danger'>Oui</span>"
-    else element = "<span class='badge badge-success'>Non</span>";
+    if(booleen) element = "<span class='badge badge-danger traduire'>Oui</span>"
+    else element = "<span class='badge badge-success traduire'>Non</span>";
     return element;
 }
 
@@ -166,3 +176,35 @@ function afficherNombreCouleur(valeur) {
     return element;
 }
 
+function traduireEn(texteFr) {
+    var tableDeTraductionEn = {
+        "Vélo Montréal": "Biking Montréal",
+        "Accueil": "Home",
+        "Carte des stations": "Stations map",
+        "Liste des stations": "Stations list",
+        "Localisation:": "Location",
+        "État de la station": "Station status",
+        "ID station": "Station ID",
+        "Vélos disponibles": "Available bikes",
+        "Bloquée": "Blocked",
+        "Bornes disponibles": "Available terminals",
+        "Suspendue": "On hold",
+        "Vélos indisponibles": "Unavailable bikes",
+        "Hors service": "Out of service",
+        "Bornes indisponibles": "Unavailable terminals",
+        "État de toutes les stations de vélos": "Status for all biking stations",
+        "ID": "ID",
+        "Nom station": "Station name",
+        "Bornes disponibles": "Available terminals",
+        "Oui": "Yes",
+        "Non": "No"
+    };
+    if(tableDeTraductionEn[texteFr]) {
+        return tableDeTraductionEn[texteFr];
+    }
+    else {
+        // Avertit le développeur si un élément à traduire dans le site n'a pas de traduction dans tableDeTraductionEn
+        alert("Pas de traduction trouvée pour \"".concat(texteFr).concat("\""));
+        return texteFr;
+    }
+}
