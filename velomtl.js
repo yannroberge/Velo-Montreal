@@ -14,9 +14,6 @@ $(document).ready( function() {
             success: function(data){
                 var stations = parseStations(data.stations);
 
-                // var nomsStations = $.map(data.stations, function(station){ return station.s; });
-                // initAutocomplete(nomsStations);
-
                 //Implémentation de l'autocomplétion
                 var nomsStations = $.map(stations, function(station){ return station.Nom; });
                 initAutocomplete(nomsStations);
@@ -33,15 +30,15 @@ $(document).ready( function() {
                 });
                 genererListe(stations);
                 
-                $(".traduire").each( function() {
-                    traduire($(this));
+                //$(".traduire").each( function() {
+                    //traduire($(this));
                     // switch($(this)) {
                     //     case ""
                     //     traduire($(this.html()));
                     //     default:
                     //         alert($(this).html().concat(" n'a pas encore de traduction"));
                     // }
-                });
+                //});
             },
             error: function(){
                 alert("Erreur lors du chargement des stations");
@@ -56,7 +53,6 @@ function parseStations(stationsBrutes){
     var stations = [];
     var x = [];
     var i=0;
-    // alert(stationsBrutes[i].n);
     
     for(x in stationsBrutes) {
         stations[i] = {
@@ -110,19 +106,21 @@ function initAutocomplete(nomsStations){
     });
 }
 
-
 function updateTableau(stations){
+    //Met à jour le tableau d'informations lorsqu'un nom de station est entré dans la barre de recherche
     var barreRecherche = document.getElementById( "recherche" );
     
     barreRecherche.onchange = function () {
         var s = stations[barreRecherche.value];
         if(s != null){
+            document.getElementById( "localisation" ).innerHTML = s.Nom;
+        
             document.getElementById( "tableID" ).innerHTML = s.ID;
-            document.getElementById( "tableBloquee" ).innerHTML = boolVersFrancais(s.bloquee);
-            document.getElementById( "tableSuspendue" ).innerHTML = boolVersFrancais(s.suspendue);
-            document.getElementById( "tableHorsService" ).innerHTML = boolVersFrancais(s.horsService);
-            document.getElementById( "tableVelosDispo" ).innerHTML = s.velosDispo;
-            document.getElementById( "tableBornesDispo" ).innerHTML = s.bornesDispo;
+            document.getElementById( "tableBloquee" ).innerHTML = afficherBooleen(s.bloquee);
+            document.getElementById( "tableSuspendue" ).innerHTML = afficherBooleen(s.suspendue);
+            document.getElementById( "tableHorsService" ).innerHTML = afficherBooleen(s.horsService);
+            document.getElementById( "tableVelosDispo" ).innerHTML = afficherNombreCouleur(s.velosDispo);
+            document.getElementById( "tableBornesDispo" ).innerHTML = afficherNombreCouleur(s.bornesDispo);
             document.getElementById( "tableVelosInDispo" ).innerHTML = s.velosInDispo;
             document.getElementById( "tableBornesInDispo" ).innerHTML = s.bornesInDispo;
         }
@@ -132,13 +130,13 @@ function updateTableau(stations){
 function genererListe(stations) {
     var x=[];
     var tableauListe = $("#tableauListe").DataTable();
-    //stations[4].bloquee = true;
+    
     for(x in stations) {
         tableauListe.row.add( [
         stations[x].ID,
         stations[x].Nom,
-        stations[x].velosDispo,
-        stations[x].bornesDispo,
+        afficherNombreCouleur(stations[x].velosDispo),
+        afficherNombreCouleur(stations[x].bornesDispo),
         afficherBooleen(stations[x].bloquee),
         afficherBooleen(stations[x].suspendue)
     ] )
@@ -146,16 +144,25 @@ function genererListe(stations) {
     tableauListe.draw();
 }
 
-function afficherBooleen(booleen) {
-    var ouiOuNon = "";
-    if(booleen) ouiOuNon = "<span class='badge badge-danger'>Oui</span>"
-    else ouiOuNon = "<span class='badge badge-success'>Non</span>";
-    return ouiOuNon;
+function traduire(objet) {
+
 }
 
-// ^^^^ implémentée comme "afficherBooleen"
-// function boolVersFrancais(x){
-//     return x ? "Oui":"Non";
-// }
+function afficherBooleenCouleur(booleen) {
+    //Retourne une balise HTML qui s'affiche comme un badge coloré avec le booléen donnée sous forme oui/non à l'intérieur
+    //Sera rouge si true et vert si false
+    var element = "";
+    if(booleen) element = "<span class='badge badge-danger'>Oui</span>"
+    else element = "<span class='badge badge-success'>Non</span>";
+    return element;
+}
 
-function traduire(objet)
+function afficherNombreCouleur(valeur) {
+    //Retourne une balise HTML qui s'affiche comme un badge coloré avec la valeur donnée à l'intérieur
+    //Sera rouge si valeur = 0 et vert sinon
+    var element = "";
+    if(valeur == 0) element = "<span class='badge badge-danger'>" + valeur + "</span>"
+    else element = "<span class='badge badge-success'>" + valeur + "</span>";
+    return element;
+}
+
