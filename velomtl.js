@@ -17,6 +17,7 @@ $(document).ready( function() {
                 // var nomsStations = $.map(data.stations, function(station){ return station.s; });
                 // initAutocomplete(nomsStations);
 
+                //Implémentation de l'autocomplétion
                 var nomsStations = $.map(stations, function(station){ return station.Nom; });
                 initAutocomplete(nomsStations);
                 
@@ -24,12 +25,23 @@ $(document).ready( function() {
                 $.map(stations, function(station){ stationsCherchable[station.Nom] = station; });
                 updateTableau(stationsCherchable);
 
+                // Crée la liste des stations
                 $('#tableauListe').DataTable( {
                     language: {
                         url: "DataTables/table_fr_FR.json"
                     }
                 });
                 genererListe(stations);
+                
+                $(".traduire").each( function() {
+                    traduire($(this));
+                    // switch($(this)) {
+                    //     case ""
+                    //     traduire($(this.html()));
+                    //     default:
+                    //         alert($(this).html().concat(" n'a pas encore de traduction"));
+                    // }
+                });
             },
             error: function(){
                 alert("Erreur lors du chargement des stations");
@@ -141,7 +153,9 @@ function afficherBooleen(booleen) {
     return ouiOuNon;
 }
 
-function boolVersFrancais(x){
-    return x ? "Oui":"Non";
-}
+// ^^^^ implémentée comme "afficherBooleen"
+// function boolVersFrancais(x){
+//     return x ? "Oui":"Non";
+// }
 
+function traduire(objet)
