@@ -136,6 +136,20 @@ h3 {
 	border-top: 1px solid #dddddd;
 }
 
+/*.paginate_button:hover {
+	color: #3193C6;
+}*/
+/*.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: none;
+  background-color: #3193C6!important;
+  border-radius: 4px;
+  border: 1px solid #444444;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  color: white!important;
+} */
+
 /* -----  Badges colorés  ----- */
 .badge-success {
 	background-color: #29B873;
