@@ -1,10 +1,31 @@
 
-function initMap() {    
-    var carte = new google.maps.Map(document.getElementById('div-map'), {
+function initMap() {
+    //Initialise la carte Google Maps, centrée sur Montréal
+    carte = new google.maps.Map(document.getElementById('div-map'), {
         center: {lat: 45.55, lng:-73.7},
         zoom: 10,
         minZoom: 10
     });
+    
+    //Initialiser le marqueur (vide)
+    marqueur = new google.maps.Marker();
+}
+
+function placerMarqueur(station) {
+    //Place un marqueur sur la carte à la position de la station sélectionnée.
+    var posStation = {lat:station.latitude, lng:station.longitude }
+    if(marqueur.getPosition() != posStation) {
+        //Initialiser le marqueur visible la première fois
+        marqueur = new google.maps.Marker({
+            position: posStation,
+            map: carte
+        });
+    }
+    else marqueur.setPosition(posStation); //Déplacer le marqueur s'il existe déjà
+    
+    //Centre la carte sur le marqueur et fait un zoom.
+    carte.panTo(posStation);
+    carte.setZoom(16);
 }
 
 $(document).ready( function() {
@@ -63,7 +84,8 @@ $(document).ready( function() {
 });
 
 function parseStations(stationsBrutes){
-
+    //Convertit la liste brute des stations du .json en objets plus lisibles
+    //en changeant les noms d'attributs de manière plus significative.
     var stations = [];
     var x = [];
     var i=0;
@@ -78,7 +100,9 @@ function parseStations(stationsBrutes){
             "velosDispo":stationsBrutes[x].ba,
             "bornesDispo":stationsBrutes[x].da,
             "velosInDispo":stationsBrutes[x].bx,
-            "bornesInDispo":stationsBrutes[x].dx
+            "bornesInDispo":stationsBrutes[x].dx,
+            "longitude":stationsBrutes[x].lo,
+            "latitude":stationsBrutes[x].la
         };
         
         i++;
@@ -125,6 +149,8 @@ function updateTableau(stations){
     var barreRecherche = document.getElementById( "recherche" );
     
     barreRecherche.onchange = function () {
+        //S'active lorsque le contenu de la barre de recherche change et
+        //que l'usager fait "entrée" ou clique à l'extérieur de la barre de saisie
         var s = stations[barreRecherche.value];
         if(s != null){
             document.getElementById( "localisation" ).innerHTML = s.Nom;
@@ -137,6 +163,8 @@ function updateTableau(stations){
             document.getElementById( "tableBornesDispo" ).innerHTML = afficherNombreCouleur(s.bornesDispo);
             document.getElementById( "tableVelosInDispo" ).innerHTML = s.velosInDispo;
             document.getElementById( "tableBornesInDispo" ).innerHTML = s.bornesInDispo;
+            
+            placerMarqueur(s);
         }
     };
 }
