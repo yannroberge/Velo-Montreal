@@ -215,7 +215,7 @@ function traduireEn(texteFr) {
         "Accueil": "Home",
         "Carte des stations": "Stations map",
         "Liste des stations": "Stations list",
-        "Localisation:": "Location",
+        "Localisation:": "Location:",
         "État de la station": "Station status",
         "ID station": "Station ID",
         "Vélos disponibles": "Available bikes",
