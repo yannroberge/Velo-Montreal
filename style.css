@@ -36,7 +36,6 @@ body {
 }
 #entete #boutonLangue {
 	position: absolute;
-	/*top: -15px;*/
 	right: 22px;
 	font-size: 16px;
 	padding-left: 10px;
