@@ -76,7 +76,8 @@ body {
     position: absolute;
     margin-left: 20px;
     border-right: 1px solid #dddddd;
-    width: 400px;
+    /*width: 400px;*/
+    width: 35%;
     height: 200px;
 }
 
