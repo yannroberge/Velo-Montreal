@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <title class="traduire">Vélo Montréal</title>
+    <meta charset="UTF-8">
+    
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- JQuery UI -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- API Google Maps -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGT02qFjUTjSFv0XuybDJ13dMYqq3smk&callback=initMap">
+    </script>
+    
+    <!-- Fontawesome (Icône du globe) -->
+    <script src="https://use.fontawesome.com/da0fa343ae.js"></script>
+    
+    <!-- Datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+    <!-- Nos fichiers -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="SHORTCUT ICON" href="Icone-velo.ico">
+    <script src="main.js"></script>
+    
+</head>
+
+<body>
+
+    <!-- Barre en haut de page, bouton de changement de langue -->
+    <div id="entete">
+	    <a id="boutonVeloMTL" class="traduire" href="velomtl.html">Vélo Montréal</a>
+	    <a id="boutonAccueil" class="traduire" href="velomtl.html">Accueil</a>
+	    <a id="boutonLangue"><i class="fa fa-globe" aria-hidden="true"></i> English</a>
+    </div>
+
+    <!-- Boutons d'onglets Carte et Liste -->
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" class="traduire" href="#div-carte">Carte des stations</a></li>
+        <li><a data-toggle="tab" class="traduire" href="#div-liste">Liste des stations</a></li>
+    </ul>
+    
+    <!-- Contenu des onglets Carte et Liste -->
+    <div id="contenu" class="tab-content">
+        <div id="div-carte" class="tab-pane fade in active">
+            
+            <div id="recherche-localisation">
+                <!-- Barre de recherche de station -->
+                <div class="ui-widget">
+                  <input id="recherche">
+                </div>
+                
+                <h3 class="traduire">Localisation:</h3>
+                <h4 id="localisation"></h4>
+            </div>
+            
+            <!-- Tableau contenant les informations pertinentes de la station -->
+            <div id="info-stations">
+                <h3 class="traduire">État de la station</h3>
+                <div></div>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <td>
+                            <span class="champ traduire">ID station</span>
+                            <span class="info badge" id="tableID">-</span>
+                        </td>
+                        
+                        <td>
+                            <span class="champ traduire">Vélos disponibles</span>
+                            <span class="info" id="tableVelosDispo"><span class="badge">-</span></span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <span class="champ traduire">Bloquée</span>
+                            <span class="info" id="tableBloquee"><span class="badge">-</span></span>
+                        </td>
+                        
+                        <td>
+                            <span class="champ traduire">Bornes disponibles</span>
+                            <span class="info" id="tableBornesDispo"><span class="badge">-</span></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="champ traduire">Suspendue</span>
+                            <span class="info" id="tableSuspendue"><span class="badge">-</span></span>
+                        </td>
+                        
+                        <td>
+                            <span class="champ traduire">Vélos indisponibles</span>
+                            <span class="info badge" id="tableVelosInDispo">-</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="champ traduire">Hors service</span>
+                            <span class="info" id="tableHorsService"><span class="badge">-</span></span>
+                        </td>
+                        
+                        <td>
+                            <span class="champ traduire">Bornes indisponibles</span>
+                            <span class="info badge" id="tableBornesInDispo">-</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+              
+            <!-- Carte Google Maps -->
+            <div id="div-map"></div>
+        </div>
+        
+        <div id="div-liste" class="tab-pane fade">
+        	<h3 class="traduire">État de toutes les stations de vélos</h3>
+        	<table id="tableauListe" class="table table-striped table-bordered" width="100%">
+        		<thead>
+        			<tr>
+        				<td class="traduire">ID</td>
+        				<td class="traduire">Nom station</td>
+                        <td class="traduire">Vélos disponibles</td>
+                        <td class="traduire">Bornes disponibles</td>
+                        <td class="traduire">Bloquée</td>
+                        <td class="traduire">Suspendue</td>
+        			</tr>
+        		</thead>
+				<tbody>
+
+				</tbody>
+        	</table>
+        </div>
+    </div>
+    
+</body>
