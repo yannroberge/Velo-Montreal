@@ -30,23 +30,22 @@ $(document).ready( function() {
                 });
                 genererListe(stations);
                 
-                //$(".traduire").each( function() {
-                    //traduire($(this));
-                    // switch($(this)) {
-                    //     case ""
-                    //     traduire($(this.html()));
-                    //     default:
-                    //         alert($(this).html().concat(" n'a pas encore de traduction"));
-                    // }
-                //});
                 $("#boutonLangue").click(function() {
                     if ($("html").attr("lang") == "fr") {
                         $(this).html("<i class=\"fa fa-globe\" aria-hidden=\"true\"></i> Français");
                         $("html").attr("lang","en");
                         $(".traduire").each(function() {
                             $(this).html(traduireEn($(this).html() ) );
-                            //alert($(this).html());
                         });
+                        var tableauListe = $('#tableauListe').DataTable();
+                        tableauListe.clear();
+                        tableauListe.destroy();
+                        $('#tableauListe').DataTable( {
+                            language: {
+                                url: "DataTables/table_en_EN.json"
+                            }
+                        });
+                        genererListe(stations);
                     }
                     else {
                         // Rafraîchir la page, ce qui remet le site en Français
@@ -162,8 +161,14 @@ function afficherBooleenCouleur(booleen) {
     //Retourne une balise HTML qui s'affiche comme un badge coloré avec le booléen donnée sous forme oui/non à l'intérieur
     //Sera rouge si true et vert si false
     var element = "";
-    if(booleen) element = "<span class='badge badge-danger traduire'>Oui</span>"
-    else element = "<span class='badge badge-success traduire'>Non</span>";
+    if ($("html").attr("lang") == "en") {
+        if(booleen) element = "<span class='badge badge-danger traduire'>Yes</span>"
+        else element = "<span class='badge badge-success traduire'>No</span>";
+    }
+    else {
+        if(booleen) element = "<span class='badge badge-danger traduire'>Oui</span>"
+        else element = "<span class='badge badge-success traduire'>Non</span>";
+    }
     return element;
 }
 
@@ -197,14 +202,14 @@ function traduireEn(texteFr) {
         "Nom station": "Station name",
         "Bornes disponibles": "Available terminals",
         "Oui": "Yes",
-        "Non": "No"
+        "Non": "No",
     };
     if(tableDeTraductionEn[texteFr]) {
         return tableDeTraductionEn[texteFr];
     }
     else {
         // Avertit le développeur si un élément à traduire dans le site n'a pas de traduction dans tableDeTraductionEn
-        alert("Pas de traduction trouvée pour \"".concat(texteFr).concat("\""));
+        //alert("Pas de traduction trouvée pour \"".concat(texteFr).concat("\""));
         return texteFr;
     }
 }
