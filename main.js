@@ -1,6 +1,7 @@
 
 function initMap() {
     //Initialise la carte Google Maps, centrée sur Montréal
+    //La carte est globale car il faut pouvoir la référencer lors de la création du marqueur
     carte = new google.maps.Map(document.getElementById('div-map'), {
         center: {lat: 45.55, lng:-73.7},
         zoom: 10,
@@ -8,14 +9,16 @@ function initMap() {
     });
     
     //Initialiser le marqueur (vide)
+    //Le marqueur est global car il faut pouvoir le modifier à plusieurs reprises
     marqueur = new google.maps.Marker();
 }
+
 
 function placerMarqueur(station) {
     //Place un marqueur sur la carte à la position de la station sélectionnée.
     var posStation = {lat:station.latitude, lng:station.longitude }
     if(marqueur.getPosition() == null) {
-        //Initialiser le marqueur visible la première fois
+        //Créer le marqueur visible la première fois
         marqueur = new google.maps.Marker({
             position: posStation,
             map: carte
@@ -28,8 +31,9 @@ function placerMarqueur(station) {
     if(carte.getZoom() != 16) carte.setZoom(16);
 }
 
+
 $(document).ready( function() {
-    
+    //Requête ajax pour obtenir les données de Bixi
     $.ajax('https://secure.bixi.com/data/stations.json',
         {
             success: function(data){
@@ -56,11 +60,13 @@ $(document).ready( function() {
                         $(this).html("<i class=\"fa fa-globe\" aria-hidden=\"true\"></i> Français");
                         $("html").attr("lang","en");
                         $(".traduire").each(function() {
+                            //Remplacer chaque chaine par sa version anglaise
                             $(this).html(traduireEn($(this).html() ) );
                         });
                         var tableauListe = $('#tableauListe').DataTable();
                         tableauListe.clear();
                         tableauListe.destroy();
+                        //Recréer la DataTable en version anglaise
                         $('#tableauListe').DataTable( {
                             language: {
                                 url: "DataTables/table_en_EN.json"
@@ -81,6 +87,7 @@ $(document).ready( function() {
     );
        
 });
+
 
 function parseStations(stationsBrutes){
     //Convertit la liste brute des stations du .json en objets plus lisibles
@@ -108,6 +115,7 @@ function parseStations(stationsBrutes){
     }
     return stations;
 }
+
 
 function initAutocomplete(nomsStations){
     //Code tiré du tutoriel sur le widget Autocomplete de jQuery UI
@@ -143,6 +151,7 @@ function initAutocomplete(nomsStations){
     });
 }
 
+
 function updateTableau(stations){
     //Met à jour le tableau d'informations lorsqu'un nom de station est entré dans la barre de recherche
     var barreRecherche = document.getElementById( "recherche" );
@@ -169,6 +178,7 @@ function updateTableau(stations){
 }
 
 function genererListe(stations) {
+    //Populer la DataTable de stations avec les stations obtenues lors de la requête ajax
     var x=[];
     var tableauListe = $("#tableauListe").DataTable();
     
@@ -182,8 +192,9 @@ function genererListe(stations) {
         afficherBooleenCouleur(stations[x].suspendue)
     ] )
     }
-    tableauListe.draw();
+    tableauListe.draw(); //Affiche le contenu de la table
 }
+
 
 function afficherBooleenCouleur(booleen) {
     //Retourne une balise HTML qui s'affiche comme un badge coloré avec le booléen donnée sous forme oui/non à l'intérieur
@@ -200,6 +211,7 @@ function afficherBooleenCouleur(booleen) {
     return element;
 }
 
+
 function afficherNombreCouleur(valeur) {
     //Retourne une balise HTML qui s'affiche comme un badge coloré avec la valeur donnée à l'intérieur
     //Sera rouge si valeur = 0 et vert sinon
@@ -209,8 +221,11 @@ function afficherNombreCouleur(valeur) {
     return element;
 }
 
+
 function traduireEn(texteFr) {
+ 
     var tableDeTraductionEn = {
+        //Contient chaque chaine de caractères en français et sa traduction anglaise
         "Vélo Montréal": "Biking Montréal",
         "Accueil": "Home",
         "Carte des stations": "Stations map",
@@ -233,7 +248,7 @@ function traduireEn(texteFr) {
         "Non": "No",
     };
     if(tableDeTraductionEn[texteFr]) {
-        return tableDeTraductionEn[texteFr];
+        return tableDeTraductionEn[texteFr]; //Retourner la version anglaise de la chaine
     }
     else {
         // Avertit le développeur si un élément à traduire dans le site n'a pas de traduction dans tableDeTraductionEn
