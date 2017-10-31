@@ -55,6 +55,7 @@ $(document).ready( function() {
                 });
                 genererListe(stations);
                 
+                // Gestion du bouton de changement de langue
                 $("#boutonLangue").click(function() {
                     if ($("html").attr("lang") == "fr") {
                         $(this).html("<i class=\"fa fa-globe\" aria-hidden=\"true\"></i> Français");
