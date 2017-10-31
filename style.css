@@ -1,15 +1,17 @@
 body {
 	margin: 0px;
+	/* Police de caratère sans-serif utilisée dans tout le document pour améliorer la lisibilité */
 	font-family: Verdana,sans-serif;
 }
 
-/* Barre en haut de page, bouton de changement de langue */
+/* ---- Barre en haut de page, bouton de changement de langue ---- */
 #entete {
 	position: relative;
 	height: 50px;
 	display: block;
 	background-color: #3193C6;
 }
+/* Boutons sur la barre */
 #entete a {
 	position: relative;
 	vertical-align: middle;
@@ -18,12 +20,14 @@ body {
 	color: white;
 	text-decoration: none;
 }
+/* Bouton principal en haut à gauche */
 #entete #boutonVeloMTL {
 	margin-left: 20px;
 	font-size: 22px;
 	padding-top: 19px;
 	padding-bottom: 19px;
 }
+/* Lien vers la page d'accueil */
 #entete #boutonAccueil {
 	margin-left: 12px;
 	font-size: 16px;
@@ -34,6 +38,7 @@ body {
 #entete #boutonAccueil:hover {
 	background-color: #27759E;
 }
+/* Bouton de traduction Français/Anglais */
 #entete #boutonLangue {
 	position: absolute;
 	right: 22px;
@@ -117,6 +122,9 @@ body {
 #div-map {
     height: 400px;
 }
+
+
+/* -----  Onglet liste  ----- */
 
 #div-liste {
     margin-left: 20px;
