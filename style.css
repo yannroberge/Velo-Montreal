@@ -145,11 +145,3 @@ h3 {
 	background-color: #EE634C;
 }
 
-
-hr.vertical
-{
-   width: 2px;
-   height: 100px; /* or height in PX */
-   background-color: black;
-   float: right;
-} 
