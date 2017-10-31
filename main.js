@@ -14,7 +14,7 @@ function initMap() {
 function placerMarqueur(station) {
     //Place un marqueur sur la carte à la position de la station sélectionnée.
     var posStation = {lat:station.latitude, lng:station.longitude }
-    if(marqueur.getPosition() != posStation) {
+    if(marqueur.getPosition() == null) {
         //Initialiser le marqueur visible la première fois
         marqueur = new google.maps.Marker({
             position: posStation,
@@ -25,7 +25,7 @@ function placerMarqueur(station) {
     
     //Centre la carte sur le marqueur et fait un zoom.
     carte.panTo(posStation);
-    carte.setZoom(16);
+    if(carte.getZoom() != 16) carte.setZoom(16);
 }
 
 $(document).ready( function() {

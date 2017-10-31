@@ -46,6 +46,8 @@ body {
 	background-color: #27759E;
 }
 
+
+/* ----- Onglets de navigation ----- */
 .nav-tabs {
     margin-left: 10px;
     margin-right: 10px;
@@ -73,6 +75,9 @@ body {
 #recherche-localisation {
     position: absolute;
     margin-left: 20px;
+    border-right: 1px solid #dddddd;
+    width: 400px;
+    height: 200px;
 }
 
 .ui-autocomplete {
@@ -119,11 +124,13 @@ h3 {
     font-size: 24px;
 }
 
-h4 {
+#localisation {
 	max-width: 375px;
+	border-top: 1px solid #dddddd;
 }
-/* -----  Badges colorés  ----- */
 
+
+/* -----  Badges colorés  ----- */
 .badge-success {
 	background-color: #29B873;
 }
@@ -131,3 +138,12 @@ h4 {
 .badge-danger {
 	background-color: #EE634C;
 }
+
+
+hr.vertical
+{
+   width: 2px;
+   height: 100px; /* or height in PX */
+   background-color: black;
+   float: right;
+} 
