@@ -76,7 +76,7 @@ body {
     position: absolute;
     margin-left: 20px;
     border-right: 1px solid #dddddd;
-    width: 400px;
+    width: 35%;
     height: 200px;
 }
 
@@ -131,7 +131,8 @@ h3 {
 }
 
 #localisation {
-	width: 125%;
+	width: 90%;
+	padding-top: 10px;
 	border-top: 1px solid #dddddd;
 }
 
